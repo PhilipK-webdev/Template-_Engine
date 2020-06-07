@@ -24,18 +24,46 @@ let arrTeamResult = [];
 
 // }]);
 
+
 const teamManager = inquirer.prompt([
 
     {
 
         type: "input",
         name: "ManagerName",
-        message: "Name Of the Manager?"
+        message: "Name Of the Manager?",
+        validate:
+            async (input) => {
+
+                var hasNumber = /\d/;
+                if (input === "" || hasNumber.test(input) || /[^a-zA-Z0-9\-\/]/.test(input)) {
+
+                    return "Wrong input, Try again";
+
+                } else {
+                    return true;
+                }
+
+            }
     },
     {
         type: "input",
         name: "ManagerId",
-        message: "Manager ID?"
+        message: "Manager ID?",
+        default: 1,
+        validate:
+            async (input) => {
+
+                if (Number.isInteger(+input) === true) {
+
+                    return true;
+
+                } else {
+
+                    return "Input must be a number";
+                }
+            }
+
     },
     {
         type: "input",
@@ -49,6 +77,7 @@ const teamManager = inquirer.prompt([
     },
 
 ]);
+
 
 arrTeamResult = teamManager.then((res) => {
 
@@ -71,7 +100,8 @@ arrTeamResult = teamManager.then((res) => {
                 type: "input",
                 name: "EngineerName",
                 message: "What is your name?",
-                when: (answers) => answers.inputValue === 'Engineer'
+                when: (answers) => answers.inputValue === 'Engineer',
+                validate: confirmAnswer
 
             },
             {
@@ -79,7 +109,9 @@ arrTeamResult = teamManager.then((res) => {
                 type: "input",
                 name: "EngineerId",
                 message: "What is your ID?",
-                when: (answers) => answers.inputValue === 'Engineer'
+                when: (answers) => answers.inputValue === 'Engineer',
+                default: 2,
+                validate: validateInt
             },
             {
 
@@ -100,14 +132,17 @@ arrTeamResult = teamManager.then((res) => {
                 type: "input",
                 name: "InternName",
                 message: "What is your name?",
-                when: (answers) => answers.inputValue === 'Intern'
+                when: (answers) => answers.inputValue === 'Intern',
+                validate: confirmAnswer
             },
             {
 
                 type: "input",
                 name: "InternId",
                 message: "What is your ID?",
-                when: (answers) => answers.inputValue === 'Intern'
+                when: (answers) => answers.inputValue === 'Intern',
+                default: 23,
+                validate: validateInt
             },
             {
 
@@ -163,6 +198,33 @@ arrTeamResult = teamManager.then((res) => {
 
 }).catch(err => console.log(err));
 
+let confirmAnswer = async (input) => {
+
+    var hasNumber = /\d/;
+    if (input === "" || hasNumber.test(input) || /[^a-zA-Z0-9\-\/]/.test(input)) {
+
+        return "Wrong input, Try again";
+
+    } else {
+        return true;
+    }
+
+};
+
+let validateInt = async (input) => {
+
+    if (Number.isInteger(+input) === true) {
+
+        return true;
+
+    } else {
+
+        return "Input must be a number";
+    }
+
+
+};
+
 function createTeamMembers(data) {
 
 
@@ -179,6 +241,9 @@ function createTeamMembers(data) {
 
 
 }
+
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will

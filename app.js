@@ -186,8 +186,30 @@ function createTeamMembers(data) {
 arrTeamResult.then(res => {
 
     const div = render(res);
+    try {
+        if (fs.existsSync(OUTPUT_DIR)) {
+            console.log("Directory exists.");
+            fs.writeFile(outputPath, div, (err) => {
 
-    console.log(div);
+                if (err) {
+                    console.log(err);
+                }
+            })
+
+        } else {
+            console.log("Directory does not exist.");
+
+            fs.mkdir("./output", { recursive: true }, function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log("New directory successfully created.")
+                }
+            });
+        }
+    } catch (e) {
+        console.log("An error occurred.")
+    }
 }).catch(err => console.log(err));
 
 

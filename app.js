@@ -172,17 +172,11 @@ arrTeamResult = teamManager.then((res) => {
     };
 
     const resultTeam = team();
-
     return resultTeam.then(res => {
-
         const data = res;
-
         createTeamMembers(data);
-
         arrTeamMembers.push(manager);
-
         return arrTeamMembers;
-
     }).catch(err => console.log(err));
 
 
@@ -195,7 +189,6 @@ const confirmAnswer = async (input) => {
     if (input === "" || hasNumber.test(input) || /[^a-zA-Z0-9\-\/]/.test(input)) {
 
         return "Wrong input, Try again";
-
     } else {
         return true;
     }

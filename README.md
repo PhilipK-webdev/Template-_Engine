@@ -14,10 +14,12 @@ Using the [Inquirer npm package](https://github.com/SBoudrias/Inquirer.js/), and
 
 ## Usage 
 
-* Demo:
+* Full demo of the app:
 https://www.youtube.com/watch?v=n7oYQ7n9GZw
 
+* Gif using - npm run test :
 
+![](./gif/test.gif)
 
 ## Getting Started
 

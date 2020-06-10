@@ -23,11 +23,12 @@ https://www.youtube.com/watch?v=n7oYQ7n9GZw
 
 ## Getting Started
 
-* To start using the Web Page the User need to clone the project,
+* To start using the app the User need to clone the project,
   git clone "url".
-* Create package.json file
-* Open terminal via Visual Code and run the command <npm install>
-* Inquirer npm package - https://github.com/SBoudrias/Inquirer.js/ .
+* Open the folder with Visual Code.
+* Open terminal and run the command npm install. 
+* Documentation inquirer npm package - https://github.com/SBoudrias/Inquirer.js/
+* Documentation jest.js - https://www.npmjs.com/package/jest
 
 ## Built With
 
